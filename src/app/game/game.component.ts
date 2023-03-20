@@ -18,7 +18,6 @@ interface bot_move {
 export class GameComponent implements OnInit {
     @ViewChild('board', { static: false }) board: NgxChessBoardView | undefined;
 
-    @Output() change = new EventEmitter();
 
     client_id: string = '';
     player_move = true;
@@ -33,6 +32,8 @@ export class GameComponent implements OnInit {
     async start_new_game() {
         this.board?.reset();
         this.game_over = false;
+        this.player_move = true;
+        this.client_id = '';
         await this.gameService.init().toPromise().then(res => {
             if (res?.status) {
                 this.board?.setFEN(res.data.fen);
@@ -73,6 +74,7 @@ export class GameComponent implements OnInit {
                 .then(res => {
                     if (res?.status) {
                         this.game_over = res.data.game_over;
+                        this.bot_move_list = [];
                     }
                 }).catch((error: HttpErrorResponse) => {
 
