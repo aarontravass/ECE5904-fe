@@ -3,5 +3,47 @@
     <p *ngIf="player_move">Your turn</p>
     <p *ngIf="!player_move">Bot's turn</p>
 </div>
-<button mat-raised-button color="primary" (click)="start_new_game()">Start New Game</button>
-<ngx-chess-board #board (moveChange)="logmove($event)"></ngx-chess-board>
+<button type="button" (click)="start_new_game()">Start New Game</button>
+<ngx-chess-board #board (moveChange)="move($event)"></ngx-chess-board>
+
+
+<table *ngIf="this.bot_move_list.length">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Bot Name
+            </th>
+            <th>
+                Move Generated
+            </th>
+            <th>
+                Depth
+            </th>
+            <th>
+                Select
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let bot_move of this.bot_move_list">
+            <td>
+                {{bot_move.id}}
+            </td>
+            <td>
+                {{bot_move.player_name}}
+            </td>
+            <td>
+                {{bot_move.move_gen}}
+            </td>
+            <td>
+                {{bot_move.depth}}
+            </td>
+            <td>
+                <button type="button" (click)="select_bot_move(bot_move.id)">Select</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
