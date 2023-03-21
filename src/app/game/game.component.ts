@@ -16,7 +16,7 @@ interface bot_move {
     styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
-    @ViewChild('board', { static: false }) board: NgxChessBoardView | undefined;
+    @ViewChild('board') board: NgxChessBoardView | undefined;
 
 
     client_id: string = '';
