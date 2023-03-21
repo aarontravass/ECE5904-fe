@@ -1,1 +1,1 @@
-export const API_URL = 'https://5000-aarontravass-ece5904-xvunmw5ku2y.ws-us90.gitpod.io/';
+export const API_URL = 'https://ece5904-backend--j9hgasn.purpleground-a5a7035c.eastus.azurecontainerapps.io/';
