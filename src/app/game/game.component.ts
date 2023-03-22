@@ -9,6 +9,7 @@ interface bot_move {
     move_gen: string;
     depth: number;
     id: number;
+    time: number;
 }
 @Component({
     selector: 'app-game',

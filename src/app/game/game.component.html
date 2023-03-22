@@ -4,6 +4,10 @@
     <p *ngIf="!player_move">Bot's turn</p>
 </div>
 <button type="button" (click)="start_new_game()">Start New Game</button>
+
+<br>
+<br>
+<br>
 <ngx-chess-board #board (moveChange)="move($event)"></ngx-chess-board>
 
 
@@ -23,6 +27,9 @@
                 Depth
             </th>
             <th>
+                Time
+            </th>
+            <th>
                 Select
             </th>
         </tr>
@@ -40,6 +47,9 @@
             </td>
             <td>
                 {{bot_move.depth}}
+            </td>
+            <td>
+                {{bot_move.time}}
             </td>
             <td>
                 <button type="button" (click)="select_bot_move(bot_move.id)">Select</button>
