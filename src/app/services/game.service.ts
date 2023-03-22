@@ -17,22 +17,22 @@ export class GameService {
 
     init(): Observable<ResponseModel> {
         return this.http
-            .get<ResponseModel>(API_URL + 'v1/game/new')
+            .get<ResponseModel>(API_URL + 'api/v1/game/new')
             .pipe(catchError(this.handleError));
     }
 
     player_move(client_id: string, move: string): Observable<ResponseModel> {
-        return this.http.put<ResponseModel>(API_URL + "v1/game/player/move", { client_id, move })
+        return this.http.put<ResponseModel>(API_URL + "api/v1/game/player/move", { client_id, move })
             .pipe(catchError(this.handleError));
     }
 
     fetch_bot_moves(client_id: string): Observable<ResponseModel> {
-        return this.http.put<ResponseModel>(API_URL + "v1/game/bot/moves/fetch", { client_id })
+        return this.http.post<ResponseModel>(API_URL + "api/v1/game/bot/moves/fetch", { client_id })
             .pipe(catchError(this.handleError));
     }
 
     bot_move(client_id: string, move: string): Observable<ResponseModel> {
-        return this.http.put<ResponseModel>(API_URL + "v1/game/bot/move", { client_id, move })
+        return this.http.put<ResponseModel>(API_URL + "api/v1/game/bot/move", { client_id, move })
             .pipe(catchError(this.handleError));
     }
 }

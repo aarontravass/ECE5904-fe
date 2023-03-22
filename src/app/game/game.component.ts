@@ -46,6 +46,8 @@ export class GameComponent implements OnInit {
     }
 
     async move(data: any) {
+        console.log(data)
+        if(data.color!="black") return;
         const move = data.move;
         await this.make_move(move);
     }
@@ -75,6 +77,7 @@ export class GameComponent implements OnInit {
                     if (res?.status) {
                         this.game_over = res.data.game_over;
                         this.bot_move_list = [];
+                        this.board?.move(move);
                     }
                 }).catch((error: HttpErrorResponse) => {
 
