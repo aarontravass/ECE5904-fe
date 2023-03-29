@@ -1,8 +1,11 @@
-<p>game works!</p>
 <div>
     <p *ngIf="player_move">Your turn</p>
     <p *ngIf="!player_move">Bot's turn</p>
 </div>
+<input type="radio" [value]="true" [(ngModel)]="time_constraint" name="true" id="true" >
+<label for="true">Start game with random time constraint</label><br>
+<input type="radio" [value]="false" [(ngModel)]="time_constraint" id="false" name="false">
+<label for="false">Start game with no time constraint</label><br>
 <button type="button" (click)="start_new_game()">Start New Game</button>
 
 <br>
@@ -57,3 +60,4 @@
         </tr>
     </tbody>
 </table>
+<h2 *ngIf="time_constraint">Cut off time - {{cut_off_time}}s</h2>

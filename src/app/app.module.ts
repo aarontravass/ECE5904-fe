@@ -8,6 +8,7 @@ import { NgxChessBoardModule } from 'ngx-chess-board';
 import { MaterialModule } from './material.module';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, GameComponent],
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxChessBoardModule.forRoot(),
+    FormsModule
     //MaterialModule,
   ],
   providers: [],

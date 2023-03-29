@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, throwError } from "rxjs";
 import { API_URL } from "../globals";
@@ -15,9 +15,10 @@ export class GameService {
         return throwError(error);
     }
 
-    init(): Observable<ResponseModel> {
+    init(time_constraint: boolean): Observable<ResponseModel> {
+        const params = new HttpParams().set('random_time', time_constraint.toString())
         return this.http
-            .get<ResponseModel>(API_URL + 'api/v1/game/new')
+            .get<ResponseModel>(API_URL + 'api/v1/game/new', { params })
             .pipe(catchError(this.handleError));
     }
 
