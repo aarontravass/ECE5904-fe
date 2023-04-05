@@ -22,17 +22,17 @@ export class GameService {
             .pipe(catchError(this.handleError));
     }
 
-    player_move(client_id: string, move: string): Observable<ResponseModel> {
+    player_move(client_id: string | null, move: string): Observable<ResponseModel> {
         return this.http.put<ResponseModel>(API_URL + "api/v1/game/player/move", { client_id, move })
             .pipe(catchError(this.handleError));
     }
 
-    fetch_bot_moves(client_id: string): Observable<ResponseModel> {
+    fetch_bot_moves(client_id: string | null): Observable<ResponseModel> {
         return this.http.post<ResponseModel>(API_URL + "api/v1/game/bot/moves/fetch", { client_id })
             .pipe(catchError(this.handleError));
     }
 
-    bot_move(client_id: string, move: string): Observable<ResponseModel> {
+    bot_move(client_id: string | null, move: string): Observable<ResponseModel> {
         return this.http.put<ResponseModel>(API_URL + "api/v1/game/bot/move", { client_id, move })
             .pipe(catchError(this.handleError));
     }

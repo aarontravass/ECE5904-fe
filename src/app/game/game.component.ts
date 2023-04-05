@@ -20,14 +20,19 @@ export class GameComponent implements OnInit {
     @ViewChild('board') board: NgxChessBoardView | undefined;
     time_constraint = true;
 
-    client_id: string = '';
+    client_id: string | null = '';
     player_move = true;
     game_over = false;
     cut_off_time: number = 0;
     constructor(private readonly gameService: GameService, private ngxChessBoardService: NgxChessBoardService) { }
 
     async ngOnInit(): Promise<void> {
-        await this.start_new_game();
+        this.client_id = sessionStorage.getItem('client_id');
+        if(!this.client_id) await this.start_new_game();
+        else{
+            this.board?.setFEN((sessionStorage.getItem('fen') || ''));
+        }
+
     }
     bot_move_list: bot_move[] = [];
 
@@ -41,6 +46,8 @@ export class GameComponent implements OnInit {
             if (res?.status) {
                 this.board?.setFEN(res.data.fen);
                 this.client_id = res.data.client_id;
+                sessionStorage.setItem('client_id', res.data.client_id);
+                sessionStorage.setItem('fen', res.data.fen);
             }
         }).catch((error: HttpErrorResponse) => {
 
@@ -87,7 +94,7 @@ export class GameComponent implements OnInit {
                 })
         }
         this.player_move = !this.player_move;
-
+        sessionStorage.setItem('fen', this.board?.getFEN() || '');
 
     }
 
