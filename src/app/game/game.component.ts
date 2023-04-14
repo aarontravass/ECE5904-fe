@@ -30,6 +30,7 @@ export class GameComponent implements OnInit {
         this.client_id = sessionStorage.getItem('client_id');
         if(!this.client_id) await this.start_new_game();
         else{
+            this.player_move = false
             this.board?.setFEN((sessionStorage.getItem('fen') || ''));
         }
 
@@ -57,7 +58,7 @@ export class GameComponent implements OnInit {
 
     async move(data: any) {
         console.log(data)
-        if (data.color != "black") return;
+        if (data.color != "white") return;
         const move = data.move;
         await this.make_move(move);
     }
