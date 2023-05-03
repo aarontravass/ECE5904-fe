@@ -1,11 +1,10 @@
-# Ece5904Fe
+# Ece5904 Frontend
 
 Running this requires only docker for the frontend. 
 
-First, build the image
-`docker build -t {your_image_name}:{your_tag} .`
+Simply run docker compose
+`docker-compose up`
 
-Then, run this image
-`docker run -it {your_image_name}:{your_tag}`
+Then, open `localhost:80` to view the web app
 
-Open `localhost:4200` to open the web app
+A prebuilt image is available at https://hub.docker.com/r/outerspace1920/ece5904-fe/
